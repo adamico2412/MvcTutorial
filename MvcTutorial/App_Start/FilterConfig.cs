@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using MvcTutorial.Filters;
+using System.Web;
 using System.Web.Mvc;
 
 namespace MvcTutorial
@@ -8,6 +9,7 @@ namespace MvcTutorial
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new OnExceptionAttribute());
         }
     }
 }

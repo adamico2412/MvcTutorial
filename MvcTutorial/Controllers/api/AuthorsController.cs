@@ -32,6 +32,21 @@ namespace MvcTutorial.Controllers.api
             return new ResultList<AuthorViewModel>(Mapper.Map<List<Author>, List<AuthorViewModel>>(result.ToList()), queryOptions);
         }
 
+        // GET: api/Authors/5
+        [ResponseType(typeof(AuthorViewModel))]
+        public IHttpActionResult Get(int id)
+        {
+            Author author = db.Authors.Find(id);
+
+            if (author == null)
+            {
+                throw new System.Data.Entity.Core.ObjectNotFoundException
+                    (String.Format("Unable to find author with id: {0}", id));
+            }
+
+            return Ok(Mapper.Map<Author, AuthorViewModel>(author));
+        }
+
         //PUT: api/Authors/5
         [ResponseType(typeof(void))]
         public IHttpActionResult Put(AuthorViewModel author)

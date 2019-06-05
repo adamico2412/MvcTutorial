@@ -47,7 +47,8 @@ namespace MvcTutorial.Controllers
             Author author = db.Authors.Find(id);
             if (author == null)
             {
-                return HttpNotFound();
+                throw new System.Data.Entity.Core.ObjectNotFoundException
+                    (String.Format("Unable to find author with id: {0}", id));
             }
             return View(author);
         }
